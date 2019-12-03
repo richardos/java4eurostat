@@ -42,7 +42,7 @@ public class EurobaseIO {
 	}
 	public static StatsHypercube getData(String eurobaseDatabaseCode){ return getDataFromURL(getURL(eurobaseDatabaseCode)); }
 
-	public static String eurobaseBulkURLBase = "http://ec.europa.eu/eurostat/estat-navtree-portlet-prod/BulkDownloadListing?file=data%2F";
+	public static String eurobaseBulkURLBase = "https://ec.europa.eu/eurostat/estat-navtree-portlet-prod/BulkDownloadListing?file=data%2F";
 	public static String eurobaseBulkURLSuf = ".tsv.gz";
 
 	public static void getDataBulkDownload(String eurobaseDatabaseCode){ getDataBulkDownload(eurobaseDatabaseCode,""); }
@@ -78,7 +78,7 @@ public class EurobaseIO {
 
 	private static Date getUpdateDate(String indic, String dir) {
 		try {
-			String url_ = "http://ec.europa.eu/eurostat/estat-navtree-portlet-prod/BulkDownloadListing?dir="+dir;
+			String url_ = "https://ec.europa.eu/eurostat/estat-navtree-portlet-prod/BulkDownloadListing?dir="+dir;
 			if("data".equals(dir)) url_ += "&start="+indic;
 			URL url = new URL(url_);
 
@@ -112,7 +112,7 @@ public class EurobaseIO {
 
 			System.out.println("Start data update from Eurobase...");
 
-			String baseUrl1 = "http://ec.europa.eu/eurostat/estat-navtree-portlet-prod/BulkDownloadListing?sort=1&file=";
+			String baseUrl1 = "https://ec.europa.eu/eurostat/estat-navtree-portlet-prod/BulkDownloadListing?sort=1&file=";
 			String baseUrl2 = baseUrl1 + "data%2F";
 
 			System.out.println("Read information on update last update dates");
@@ -164,10 +164,10 @@ public class EurobaseIO {
 
 
 
-	public static String eurobaseDictionnaryURLBase = "http://ec.europa.eu/eurostat/estat-navtree-portlet-prod/BulkDownloadListing?sort=1&file=dic%2Fen%2F";
+	public static String eurobaseDictionnaryURLBase = "https://ec.europa.eu/eurostat/estat-navtree-portlet-prod/BulkDownloadListing?file=dic%2Fen%2F";
 
 	/**
-	 * Load a dictionnary from http://ec.europa.eu/eurostat/estat-navtree-portlet-prod/BulkDownloadListing?dir=dic%2Fen
+	 * Load a dictionnary from https://ec.europa.eu/eurostat/estat-navtree-portlet-prod/BulkDownloadListing?file=dic%2Fen%2F
 	 * 
 	 * @param code the dictionnary code. Example: "geo" for geographical regions.
 	 * @return
