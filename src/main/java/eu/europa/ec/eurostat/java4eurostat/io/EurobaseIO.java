@@ -11,6 +11,8 @@ import java.net.URLConnection;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Set;
 
 import eu.europa.ec.eurostat.java4eurostat.base.StatsHypercube;
 import eu.europa.ec.eurostat.java4eurostat.base.Selection.Criteria;
@@ -105,8 +107,10 @@ public class EurobaseIO {
 	 * Update TSV files located into a folder based on the last update date and newly published data
 	 * @param dataFolderPath The TSV file folder
 	 * @param databaseCodes The database codes to download/update
+	 * @return The database codes that were updated.
 	 */
-	public static void update(String dataFolderPath, String... databaseCodes){
+	public static Set<String> update(String dataFolderPath, String... databaseCodes){
+		Set<String> databaseCodesUpdated = new HashSet<String>();
 		try {
 			if(!new File(dataFolderPath).exists()) new File(dataFolderPath).mkdirs();
 
@@ -151,6 +155,7 @@ public class EurobaseIO {
 					DicUtil.save(lastUpdates, dataFolderPath+"update.txt");
 					System.out.print(" Done.");
 					System.out.println();
+					databaseCodesUpdated.add(indic);
 				} else {
 					System.out.println(" No update necessary.");
 				}
@@ -158,6 +163,8 @@ public class EurobaseIO {
 
 			System.out.println("Data update from Eurobase done.");
 		} catch (Exception e) { e.printStackTrace(); }
+		
+		return databaseCodesUpdated;
 	}
 
 
